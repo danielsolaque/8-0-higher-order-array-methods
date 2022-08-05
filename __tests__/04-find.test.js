@@ -56,7 +56,7 @@ describe("findFirstSongUnderThreeMinutes()", () => {
   });
 });
 
-describe.only("findFirstTitleTrack()", () => {
+describe("findFirstTitleTrack()", () => {
   let songs;
   beforeEach(() => {
     jest.resetModules();

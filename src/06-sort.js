@@ -13,8 +13,10 @@ const exampleSongData = require("../data/songs");
  * @param {Object[]} songs - An array of songs. See the song data for more.
  * @returns {Object[]}
  */
+
+
 function sortByRuntimeAscending(songs) {
- return songs.sort((a,b) => a.runtimeInSeconds-b.runtimeInSeconds)
+ return songs.sort((a,b) => a.runtimeInSeconds - b.runtimeInSeconds)
 }
 
 /**
@@ -25,11 +27,38 @@ function sortByRuntimeAscending(songs) {
  * @param {Object[]} songs - An array of songs. See the song data for more.
  * @returns {Object[]}
  */
+
+//En general:
+
+//-1 "a" se va a situar en un indice menor a "b"
+// 0  no hay cambios 
+// 1 "b" se va a situar en un indice menor a "a"
+
+//caso ascendente:
+//a<b = -1......"a" se va a situar en un indice menor a "b"
+//a == b = 0
+//a>b = 1......"b" se va a situar en un indice menor a "a"
+
+
+//caso **descendente**:
+// a < b ==> 1....."b" se va a situar en un indice menor a "a"
+// a > b ==> -1...."a" se va a situar en un indice menor a "b"
+// a = b ==> 0
+
 function sortByArtistNameDescending(songs) {
-  return songs.sort((a,b) => a.artist.toLowerCase() > b.artist.toLowerCase()? -1 : 1)
+  return songs.sort((a,b) => {
+      if (a.artist.toLowerCase() > b.artist.toLowerCase()) {
+        return -1 
+      }
+      else if (a.artist.toLowerCase() < b.artist.toLowerCase()) {
+        return 1 
+      } 
+      return 0 
+    }
+  )
 }
 
-
+//WIth strings we should use > and < for comparing affairs.
 
 /**
  * Reorders the array so that the song objects are organized by their song title. The title that comes first in the alphabet should come first.
@@ -40,7 +69,16 @@ function sortByArtistNameDescending(songs) {
  * @returns {Object[]}
  */
 function sortBySongTitleAscending(songs) {
-  return songs.sort((a,b) => a.title.toLowerCase() > b.title.toLowerCase()? 1 : -1)
+  return songs.sort((a,b) => {
+    if (a.title.toLowerCase() > b.title.toLowerCase()){
+      return 1
+    }
+    else if (a.title.toLowerCase() < b.title.toLowerCase()) {
+      return -1
+    } 
+    return 0 
+  }
+ ) 
 }
 
 module.exports = {
